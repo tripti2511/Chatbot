@@ -1,0 +1,29 @@
+import string
+
+def clean_input(user_input):
+    user_input = user_input.lower()
+    user_input = user_input.translate(str.maketrans('', '', string.punctuation))
+    return user_input
+
+def get_response(user_input):
+    user_input = clean_input(user_input)
+
+    # Check keywords for time or recipe
+    if "time" in user_input or "cook" in user_input:
+        for dish in knowledge_base:
+            if dish in user_input:
+                return f"{dish.title()} takes {knowledge_base[dish]['time']} to cook."
+        return "Sorry, I don't know the cooking time for that dish."
+    
+    elif "recipe" in user_input or "how to make" in user_input:
+        for dish in knowledge_base:
+            if dish in user_input:
+                return f"Recipe for {dish.title()}: {knowledge_base[dish]['recipe']}"
+        return "Sorry, I don't know the recipe for that dish."
+    
+    else:
+        # Fallback if keywords not detected
+        for dish in knowledge_base:
+            if dish in user_input:
+                return f"{dish.title()} takes {knowledge_base[dish]['time']} to cook."
+        return "Sorry, I don't know about that dish."
