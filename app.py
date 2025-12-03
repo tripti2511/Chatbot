@@ -1,5 +1,5 @@
 import streamlit as st
-
+from knowledge_base import knowledge_base 
 # -----------------------------
 # AI Knowledge Base (Rule-Based)
 # -----------------------------
